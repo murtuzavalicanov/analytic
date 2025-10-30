@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  analytics_service:
+    build: .
+    container_name: analytics_service
+    env_file:
+      - .env
+    environment:
+      # RabbitMQ host-u xaricdən və ya digər container-dan gələcək
+      RABBITMQ_HOST: host.docker.internal
+      RABBITMQ_USER: admin
+      RABBITMQ_PASS: admin
+      RABBITMQ_VHOST: analytics_vhost
+    ports:
+      - "8001:8001"  # FastAPI web server üçün
